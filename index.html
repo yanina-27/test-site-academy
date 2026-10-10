@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Воздух - лендинг за 3 дня</title>
+<meta name="description" content="Воздух делает лендинги за 3 дня: структура, тексты, дизайн и запуск. Страница, которая готова принимать заявки.">
+<meta name="theme-color" content="#F7F5FC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Manrope:wght@300;500;700&display=swap">
+<style>
+:root {
+  --pearl: #F7F5FC;
+  --mist: #EDE7FB;
+  --lavender: #C9BBF2;
+  --amethyst: #6B55D3;
+  --amethyst-deep: #4F3BB0;
+  --ink: #24232F;
+  --ink-soft: #5A5A6B;
+  --line: #DCD3F4;
+  --white: #FFFFFF;
+  --maxw: 1200px;
+  --gutter: clamp(1rem, 4vw, 2.25rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--pearl);
+  color: var(--ink);
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+h1, h2, h3 { margin: 0; font-family: "Manrope", "Inter", sans-serif; color: var(--ink); text-wrap: balance; }
+p { margin: 0; }
+a { color: inherit; }
+
+:focus-visible { outline: 3px solid var(--amethyst); outline-offset: 3px; }
+.on-dark :focus-visible { outline-color: var(--lavender); }
+
+.skip { position: absolute; left: 1rem; top: -4rem; z-index: 20; background: var(--ink); color: #fff; padding: .6rem 1rem; border-radius: .5rem; }
+.skip:focus { top: 1rem; }
+
+.wrap { width: min(var(--maxw), 100% - 2 * var(--gutter)); margin-inline: auto; }
+
+/* 3D buttons */
+.btn {
+  position: relative; display: inline-flex; align-items: center; justify-content: center;
+  min-height: 3rem; padding: .8rem 1.6rem; border-radius: .9rem;
+  font: 500 1rem/1.2 "Inter", sans-serif; text-decoration: none; cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+}
+.btn-primary {
+  color: #fff; text-shadow: 0 1px 0 rgba(0, 0, 0, .22);
+  background: linear-gradient(180deg, #7C68E0 0%, #6B55D3 55%, #5D48C6 100%);
+  border: 1px solid #4F3BB0;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .45), inset 0 -2px 0 rgba(0, 0, 0, .12), 0 4px 0 #4A38A6, 0 12px 18px -8px rgba(75, 56, 170, .5);
+}
+.btn-pearl {
+  color: var(--ink);
+  background: linear-gradient(180deg, #FFFFFF 0%, #F1ECFC 100%);
+  border: 1px solid #CFC3F0;
+  box-shadow: inset 0 1px 0 #fff, inset 0 -2px 0 rgba(107, 85, 211, .08), 0 4px 0 #C9BBF2, 0 12px 18px -8px rgba(107, 85, 211, .3);
+}
+.btn-sm { min-height: 2.5rem; padding: .5rem 1.1rem; border-radius: .75rem; font-size: .9375rem; }
+.btn:hover { transform: translateY(-1px); filter: brightness(1.04); }
+.btn:active {
+  transform: translateY(3px); filter: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), inset 0 -1px 0 rgba(0, 0, 0, .1), 0 1px 0 #4A38A6, 0 3px 6px -3px rgba(75, 56, 170, .4);
+}
+.btn-pearl:active { box-shadow: inset 0 1px 0 #fff, 0 1px 0 #C9BBF2, 0 3px 6px -3px rgba(107, 85, 211, .3); }
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn:hover { transform: none; } }
+
+/* Hero */
+.hero { position: relative; isolation: isolate; display: flex; flex-direction: column; min-height: max(100svh, 40rem); overflow: hidden; }
+.hero canvas { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; }
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(247, 245, 252, .94) 0%, rgba(247, 245, 252, .66) 38%, rgba(247, 245, 252, 0) 72%),
+    linear-gradient(0deg, rgba(247, 245, 252, .9) 0%, rgba(247, 245, 252, 0) 38%);
+}
+.site-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.5rem; }
+.wordmark { font: 700 1.5rem/1 "Manrope", sans-serif; letter-spacing: -.01em; text-decoration: none; }
+.wordmark span { color: var(--amethyst); }
+.site-nav { display: flex; align-items: center; gap: 2rem; }
+.site-nav ul { display: flex; gap: 1.75rem; margin: 0; padding: 0; list-style: none; }
+.site-nav a:not(.btn) { color: var(--ink-soft); text-decoration: none; font-size: .9375rem; }
+.site-nav a:not(.btn):hover { color: var(--ink); }
+
+.hero-body { margin-top: auto; padding-bottom: clamp(2.5rem, 7vw, 5rem); }
+.hero h1 { font-weight: 300; font-size: clamp(3.5rem, 12.5vw, 9.5rem); line-height: .94; letter-spacing: -.045em; }
+.lead { margin-top: 1.75rem; max-width: 30rem; font-size: 1.25rem; color: var(--ink-soft); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.25rem; }
+
+.motion-toggle { position: absolute; right: var(--gutter); bottom: 1.5rem; z-index: 2; }
+
+/* Sections */
+.section { padding-block: clamp(4rem, 9vw, 7.5rem); scroll-margin-top: 1rem; }
+.section-white { background: var(--white); }
+.section-mist { background: var(--mist); }
+.section h2 { font-weight: 300; font-size: clamp(2.25rem, 5vw, 4rem); line-height: 1.04; letter-spacing: -.035em; max-width: 16ch; }
+.section-intro { margin-top: 1.25rem; max-width: 30rem; color: var(--ink-soft); }
+.section-head { margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+
+/* Steps */
+.steps { margin: 0; padding: 0; list-style: none; }
+.step {
+  display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 4fr) minmax(0, 5fr);
+  align-items: baseline; gap: .75rem 3rem; padding-block: 2rem; border-top: 1px solid var(--line);
+}
+.step:last-child { border-bottom: 1px solid var(--line); }
+.step-day { font: 300 clamp(2.25rem, 4.5vw, 3.5rem)/1 "Manrope", sans-serif; letter-spacing: -.035em; color: var(--amethyst); }
+.step h3 { font-weight: 500; font-size: 1.5rem; line-height: 1.3; letter-spacing: -.015em; }
+.step p { color: var(--ink-soft); }
+
+/* Included list */
+.incl { margin: 0; padding: 0; list-style: none; }
+.incl li {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: .5rem 3rem;
+  align-items: baseline; padding-block: 1.5rem; border-top: 1px solid var(--line);
+}
+.incl li:last-child { border-bottom: 1px solid var(--line); }
+.incl strong { font: 500 1.5rem/1.3 "Manrope", sans-serif; letter-spacing: -.015em; }
+.incl span { color: var(--ink-soft); }
+
+/* Prices */
+.prices { margin: 0; padding: 0; list-style: none; }
+.price-row {
+  display: grid; grid-template-columns: 1fr 9rem 12rem; align-items: baseline;
+  column-gap: 1.5rem; padding-block: 1.75rem; border-top: 1px solid var(--lavender);
+}
+.price-row:last-child { border-bottom: 1px solid var(--lavender); }
+.price-name { font: 500 1.5rem/1.3 "Manrope", sans-serif; letter-spacing: -.015em; }
+.price-desc { display: block; margin-top: .2rem; font: 400 .9375rem/1.5 "Inter", sans-serif; color: var(--ink-soft); }
+.price-term { color: var(--ink-soft); }
+.price-sum { font: 500 1.125rem/1.2 "Manrope", sans-serif; text-align: right; white-space: nowrap; color: var(--ink-soft); }
+.price-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; margin-top: 2rem; }
+.price-note { max-width: 30rem; font-size: .9375rem; color: var(--ink-soft); }
+
+/* FAQ */
+.split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 6vw, 5rem); align-items: start; }
+.faq details { border-top: 1px solid var(--line); }
+.faq details:last-child { border-bottom: 1px solid var(--line); }
+.faq summary {
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  padding-block: 1.4rem; cursor: pointer; list-style: none;
+  font: 500 1.25rem/1.4 "Manrope", sans-serif; letter-spacing: -.01em;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; flex: none; color: var(--amethyst); font-size: 1.75rem; line-height: 1; transition: transform .2s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { padding-bottom: 1.4rem; max-width: 38rem; color: var(--ink-soft); }
+
+/* Contact */
+.on-dark { position: relative; isolation: isolate; background: var(--ink); color: #fff; overflow: hidden; }
+.on-dark canvas { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; }
+.on-dark h2 { color: #fff; }
+.on-dark .section-intro { color: var(--lavender); }
+.contacts { margin: 2.25rem 0 0; padding: 0; }
+.contacts div { padding-block: .85rem; border-top: 1px solid rgba(255, 255, 255, .18); }
+.contacts dt { font-size: .875rem; color: var(--lavender); }
+.contacts dd { margin: .1rem 0 0; font: 500 1.125rem/1.4 "Inter", sans-serif; }
+
+.panel {
+  padding: clamp(1.25rem, 3vw, 2rem); border-radius: 1.25rem;
+  background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .16);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+}
+.form { display: grid; gap: 1.25rem; }
+.field label { display: block; margin-bottom: .4rem; font: 500 .9375rem/1.4 "Inter", sans-serif; }
+.field input, .field textarea {
+  width: 100%; padding: .85rem 1rem; border: 1px solid rgba(255, 255, 255, .28); border-radius: .75rem;
+  background: rgba(255, 255, 255, .07); color: #fff; font: 400 1rem/1.5 "Inter", sans-serif;
+}
+.field input::placeholder, .field textarea::placeholder { color: #A9ABBD; }
+.field textarea { min-height: 7.5rem; resize: vertical; }
+.consent { display: flex; align-items: flex-start; gap: .75rem; font-size: .875rem; line-height: 1.5; color: var(--lavender); }
+.consent input { flex: none; width: 1.25rem; height: 1.25rem; margin: .05rem 0 0; accent-color: var(--lavender); }
+.consent a { color: #fff; text-underline-offset: .2em; }
+.form .btn { justify-self: start; }
+.form-status { min-height: 1.5rem; font-size: .9375rem; color: var(--lavender); }
+
+.site-foot { padding-block: 1.5rem; border-top: 1px solid rgba(255, 255, 255, .16); font-size: .875rem; color: var(--lavender); }
+.site-foot .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1.5rem; }
+.foot-link { color: var(--lavender); text-underline-offset: .2em; }
+.foot-link:hover { color: #fff; }
+
+@media (max-width: 859px) {
+  .split { grid-template-columns: 1fr; }
+  .step { grid-template-columns: 1fr; padding-block: 1.5rem; }
+  .incl li { grid-template-columns: 1fr; }
+}
+@media (max-width: 719px) {
+  .site-nav ul { display: none; }
+  .hero::after {
+    background:
+      linear-gradient(0deg, rgba(247, 245, 252, .96) 0%, rgba(247, 245, 252, .8) 45%, rgba(247, 245, 252, 0) 80%);
+  }
+  .price-row { grid-template-columns: 1fr auto; row-gap: .5rem; }
+  .price-name-cell { grid-column: 1 / -1; }
+  .hero-body { padding-bottom: 5.25rem; }
+  .motion-toggle { right: auto; left: var(--gutter); bottom: 1rem; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+
+<header class="hero">
+  <canvas id="ripple-hero" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="site-head">
+      <a class="wordmark" href="#" aria-label="Воздух, на главную">Воздух<span>.</span></a>
+      <nav class="site-nav" aria-label="Основное меню">
+        <ul>
+          <li><a href="#process">Как работаю</a></li>
+          <li><a href="#chto-vhodit">Что входит</a></li>
+          <li><a href="#stoimost">Стоимость</a></li>
+          <li><a href="#voprosy">Вопросы</a></li>
+        </ul>
+        <a class="btn btn-primary btn-sm" href="#zayavka">Обсудить проект</a>
+      </nav>
+    </div>
+  </div>
+  <div class="wrap hero-body">
+    <h1>Лендинг<br>за 3&nbsp;дня</h1>
+    <p class="lead">Беру на себя структуру, текст, дизайн и запуск. Вы получаете страницу, которая готова принимать заявки.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#zayavka">Обсудить проект</a>
+      <a class="btn btn-pearl" href="#chto-vhodit">Что входит</a>
+    </div>
+  </div>
+  <button class="btn btn-pearl btn-sm motion-toggle" id="motion-toggle" type="button">Остановить волны</button>
+</header>
+
+<main id="main">
+  <section class="section section-white" id="process">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Три дня до запуска</h2>
+      </div>
+      <ol class="steps">
+        <li class="step">
+          <span class="step-day">День 1</span>
+          <h3>Структура и текст</h3>
+          <p>Короткий созвон на 20 минут, затем собираю логику страницы и пишу тексты.</p>
+        </li>
+        <li class="step">
+          <span class="step-day">День 2</span>
+          <h3>Дизайн и сборка</h3>
+          <p>Рисую страницу в вашем стиле и настраиваю её под телефон и компьютер.</p>
+        </li>
+        <li class="step">
+          <span class="step-day">День 3</span>
+          <h3>Запуск</h3>
+          <p>Подключаю форму заявки, проверяю всё и публикую страницу на вашем адресе.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="chto-vhodit">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Что входит в лендинг</h2>
+        <p class="section-intro">Один понятный результат вместо набора услуг: готовая страница, которую можно показывать клиентам.</p>
+      </div>
+      <ul class="incl">
+        <li><strong>Структура страницы</strong><span>Блоки идут в том порядке, который ведёт посетителя к заявке.</span></li>
+        <li><strong>Тексты</strong><span>Заголовки и описания без воды, на основе ваших ответов.</span></li>
+        <li><strong>Дизайн в вашем стиле</strong><span>Цвета, шрифты и логотип, чтобы страница выглядела как ваш бренд.</span></li>
+        <li><strong>Версия для телефона</strong><span>Страница одинаково удобна на экране смартфона и компьютера.</span></li>
+        <li><strong>Форма заявки</strong><span>Заявки приходят вам на почту или в Telegram.</span></li>
+        <li><strong>Запуск</strong><span>Публикация на вашем домене и проверка перед сдачей.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-mist" id="stoimost">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Стоимость</h2>
+      </div>
+      <ul class="prices">
+        <li class="price-row">
+          <div class="price-name-cell">
+            <span class="price-name">Лендинг под ключ</span>
+            <span class="price-desc">Структура, тексты, дизайн и запуск</span>
+          </div>
+          <span class="price-term">3 дня</span>
+          <span class="price-sum">укажите цены</span>
+        </li>
+        <li class="price-row">
+          <div class="price-name-cell">
+            <span class="price-name">Срочный запуск</span>
+            <span class="price-desc">То же самое, но за сутки</span>
+          </div>
+          <span class="price-term">1 день</span>
+          <span class="price-sum">укажите цены</span>
+        </li>
+        <li class="price-row">
+          <div class="price-name-cell">
+            <span class="price-name">Доработка готовой страницы</span>
+            <span class="price-desc">Новые блоки, правки, адаптация под телефон</span>
+          </div>
+          <span class="price-term">1-2 дня</span>
+          <span class="price-sum">укажите цены</span>
+        </li>
+      </ul>
+      <div class="price-foot">
+        <p class="price-note">Цены ориентировочные. Точную стоимость назову после короткого брифа.</p>
+        <a class="btn btn-primary" href="#zayavka">Обсудить проект</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-white" id="voprosy">
+    <div class="wrap split">
+      <h2>Частые вопросы</h2>
+      <div class="faq">
+        <details>
+          <summary>Как успеть за 3 дня?</summary>
+          <p>Работа идёт по готовой схеме: заранее продуманная структура страницы и быстрые согласования. В первый день вы отвечаете на вопросы, остальное делаю я.</p>
+        </details>
+        <details>
+          <summary>Что нужно от меня?</summary>
+          <p>Рассказать об услуге и клиентах, прислать логотип и фотографии, если они есть. Всё остальное подскажу по ходу работы.</p>
+        </details>
+        <details>
+          <summary>Можно ли вносить правки?</summary>
+          <p>Да, два круга правок входят в стоимость.</p>
+        </details>
+        <details>
+          <summary>Как проходит оплата?</summary>
+          <p>Половина перед началом работы и половина после запуска страницы.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section on-dark" id="zayavka">
+    <canvas id="ripple-cta" aria-hidden="true"></canvas>
+    <div class="wrap split">
+      <div>
+        <h2>Обсудим ваш лендинг</h2>
+        <p class="section-intro">Оставьте контакт, и я напишу в течение дня, чтобы согласовать время короткого созвона.</p>
+        <dl class="contacts">
+          <div><dt>Telegram</dt><dd>@ваш_ник</dd></div>
+          <div><dt>Почта</dt><dd>hello@example.ru</dd></div>
+        </dl>
+      </div>
+      <div class="panel">
+        <form class="form" id="lead-form" novalidate>
+          <div class="field">
+            <label for="f-name">Имя</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться" required>
+          </div>
+          <div class="field">
+            <label for="f-contact">Телефон или Telegram</label>
+            <input id="f-contact" name="contact" type="text" autocomplete="off" placeholder="+7 900 000-00-00 или @ник" required>
+          </div>
+          <div class="field">
+            <label for="f-about">О проекте</label>
+            <textarea id="f-about" name="about" placeholder="Чем занимаетесь и для чего нужна страница"></textarea>
+          </div>
+          <div class="consent">
+            <input id="f-consent" name="consent" type="checkbox" required>
+            <label for="f-consent">Даю согласие на обработку персональных данных и принимаю <a href="politika.html">политику конфиденциальности</a></label>
+          </div>
+          <button class="btn btn-pearl" type="submit">Отправить заявку</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot on-dark">
+  <div class="wrap">
+    <span>&copy; 2026 Воздух</span>
+    <a class="foot-link" href="politika.html">Политика конфиденциальности</a>
+    <span>Лендинг за 3 дня</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var motionOn = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var instances = [];
+
+    function Ripples(canvas, o) {
+      var ctx = canvas.getContext('2d');
+      var w = 0, h = 0, last = 0, lastFrame = 0, raf = 0, visible = false;
+
+      function size() {
+        var dpr = Math.min(window.devicePixelRatio || 1, 2);
+        var r = canvas.getBoundingClientRect();
+        w = r.width; h = r.height;
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        draw(last);
+      }
+
+      function draw(t) {
+        last = t;
+        ctx.clearRect(0, 0, w, h);
+        var small = w < 720;
+        var cx = w * (small ? 0.58 : o.cx);
+        var cy = h * (small ? o.cySmall : o.cy);
+        var R = small ? Math.max(h * 0.55, w * 0.95) : Math.max(w * 0.5, h * 0.8);
+        var ph = (t * 0.0006) % 1;
+        for (var i = 0; i <= o.rings; i++) {
+          var sp = i - ph;
+          var u = sp / o.rings;
+          var rad = R * (1 - u);
+          if (rad <= 0) continue;
+          var k = Math.min(Math.max(u, 0), 1);
+          var ox = cx - k * R * 0.08;
+          var oy = cy + k * R * 0.2;
+          ctx.beginPath();
+          for (var s = 0; s <= 120; s++) {
+            var a = s / 120 * Math.PI * 2;
+            var wob = 1 + 0.05 * Math.sin(a * 3 + t * 0.0009 + sp * 0.18) + 0.03 * Math.sin(a * 5 - t * 0.0007 + sp * 0.31);
+            var x = ox + Math.cos(a) * rad * wob * 1.25;
+            var y = oy + Math.sin(a) * rad * wob * 0.62;
+            if (s) ctx.lineTo(x, y); else ctx.moveTo(x, y);
+          }
+          ctx.closePath();
+          var hue = 270 + 60 * Math.sin(k * 7 + t * 0.0006);
+          if (o.dark) {
+            ctx.fillStyle = 'hsl(252,' + (22 + k * 10) + '%,' + (14 + k * 7) + '%)';
+            ctx.fill();
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = 'hsla(' + hue + ',75%,68%,' + (0.1 + 0.28 * k) + ')';
+            ctx.stroke();
+          } else {
+            ctx.fillStyle = 'hsl(256,' + (55 + k * 20) + '%,' + (98 - k * 9) + '%)';
+            ctx.fill();
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = 'rgba(90,70,170,0.07)';
+            ctx.stroke();
+            ctx.lineWidth = 1.1;
+            ctx.strokeStyle = 'hsla(' + hue + ',85%,76%,' + (0.25 + 0.35 * k) + ')';
+            ctx.stroke();
+          }
+        }
+      }
+
+      function loop(now) {
+        if (!motionOn || !visible) { raf = 0; return; }
+        if (now - lastFrame >= 33) { draw(now); lastFrame = now; }
+        raf = requestAnimationFrame(loop);
+      }
+
+      function update() {
+        if (motionOn && visible && !raf) raf = requestAnimationFrame(loop);
+      }
+
+      size();
+      if ('ResizeObserver' in window) new ResizeObserver(size).observe(canvas);
+      else window.addEventListener('resize', size);
+
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          visible = entries[0].isIntersecting;
+          update();
+        }).observe(canvas);
+      } else {
+        visible = true;
+        update();
+      }
+      instances.push(update);
+    }
+
+    Ripples(document.getElementById('ripple-hero'), { dark: false, rings: 44, cx: 0.74, cy: 0.3, cySmall: 0.26 });
+    Ripples(document.getElementById('ripple-cta'), { dark: true, rings: 36, cx: 0.5, cy: 0.35, cySmall: 0.3 });
+
+    var toggle = document.getElementById('motion-toggle');
+    function syncToggle() {
+      toggle.textContent = motionOn ? 'Остановить волны' : 'Включить волны';
+    }
+    syncToggle();
+    toggle.addEventListener('click', function () {
+      motionOn = !motionOn;
+      syncToggle();
+      instances.forEach(function (update) { update(); });
+    });
+
+    var form = document.getElementById('lead-form');
+    var formStatus = document.getElementById('form-status');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      formStatus.textContent = 'Спасибо! В шаблоне форма пока никуда не отправляется, её подключим на следующем шаге.';
+      form.reset();
+    });
+  })();
+</script>
+</body>
+</html>
